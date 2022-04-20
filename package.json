@@ -1,0 +1,26 @@
+{
+  "name": "native-date",
+  "version": "1.0.0",
+  "description": "Some important Native JS Date methods ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/limon636/native-date.git"
+  },
+  "keywords": [
+    "javascript",
+    "native",
+    "date",
+    "methods"
+  ],
+  "author": "Shariful Islam Limon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/limon636/native-date/issues"
+  },
+  "homepage": "https://github.com/limon636/native-date#readme"
+}
