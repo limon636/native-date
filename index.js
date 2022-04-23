@@ -1,5 +1,4 @@
 class native_date{
-    
     constructor(){}
 
     is_date (d) {
@@ -22,21 +21,47 @@ class native_date{
         return new Date(year, 1, 29).getDate() === 29;
     }
 
+    last_date(d, type='YYYY-MM-DD'){
+        let date = new Date(d);
+        let res = '';
+        res = new Date(date.getFullYear(), date.getMonth()+1, 0);
+        return this.format(res, type);
+    }
+
     diff (d1, d2) {
         return Math.ceil((new Date(d1) - new Date(d2)) / 1000 / 60 / 60 / 24);
     }
 
-    add (d, days, type = 'YYYY-MM-DD') {
+    add (d, num, dmy='day', type = 'YYYY-MM-DD') {
         const now = new Date(d);
-        return this.format(now.setDate(now.getDate() + days), type);
+        if(dmy=='day'){
+            return this.format(now.setDate(now.getDate() + num), type);
+        }else if(dmy=='month'){
+            return this.format(now.setMonth(now.getMonth() + num), type);
+        }else if(dmy=='year'){
+            return this.format(now.setFullYear(now.getFullYear() + num), type);
+        }else {
+            return this.format(now, type);
+        }
     }
 
-    sub (d, days, type = 'YYYY-MM-DD') {
+    sub (d, num, dmy='day', type = 'YYYY-MM-DD') {
         const now = new Date(d);
-        return this.format(now.setDate(now.getDate() - days), type);
+        if(dmy=='day'){
+            this.format(now.setDate(now.getDate() - num), type);
+        }else if(dmy=='month'){
+            return this.format(now.setMonth(now.getMonth() - num), type);
+        }else if(dmy=='year'){
+            return this.format(now.setFullYear(now.getFullYear() - num), type);
+        }else {
+            return this.format(now, type);
+        }
     }
 
     format (d, type = 'YYYY-MM-DD') {
+        if(!this.is_date(d)){
+            return 'invalid date';
+        }
         const date = new Date(d);
         let year = date.getFullYear();
         let month = date.getMonth()+1;
@@ -64,6 +89,8 @@ class native_date{
             return short_month + ' ' + day + ', ' + year;
         }else if(type == 'LL'){
             return long_month + ' ' + day + ', ' + year;
+        }else if(type == 'YYYY-MM-DD HH:mm:ss'){
+            return year + '-' + month + '-' + day + ' ' + date.getHours() + ':'+ date.getMinutes() + ':' + date.getSeconds();
         }else{
             if(char != ''){
                 type_arr = type.split(char);
@@ -88,6 +115,20 @@ class native_date{
                     formatted += short_days[day_number];
                 }else if(val == 'dddd'){
                     formatted += long_days[day_number];
+                }else if(val == 'Do'){
+                    formatted += day + this.nth(day);
+                }else if(val == 'HH:mm:ss'){
+                    formatted += date.getHours() + ':'+date.getMinutes()+':'+date.getSeconds();
+                }else if(val == 'h:mm'){
+                    let hour = (date.getHours() %12) + 1;
+                    formatted += hour + ':'+date.getMinutes();
+                }else if(val == 'A'){
+                    let hour = date.getHours();
+                    if(hour < 12){
+                        formatted += 'AM';
+                    }else{
+                        formatted += 'PM';
+                    }
                 }
 
                 if(comma_pos != -1){
@@ -99,6 +140,15 @@ class native_date{
             });
         }
         return formatted;
+    }
+    nth(d) {
+        if (d > 3 && d < 21) return 'th';
+        switch (d % 10) {
+          case 1:  return "st";
+          case 2:  return "nd";
+          case 3:  return "rd";
+          default: return "th";
+        }
     }
 }
 module.exports = new native_date();
