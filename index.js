@@ -72,6 +72,7 @@ class native_date{
         let short_month = date.toLocaleString('en-us', {month: 'short'});
         let long_month = date.toLocaleString('en-us', {month: 'long'});
         let day_number = date.getDay();
+        let hours =  date.getHours() + 1;
         let formatted = '';
         let char = '';
         let type_arr = [];
@@ -89,8 +90,10 @@ class native_date{
             return short_month + ' ' + day + ', ' + year;
         }else if(type == 'LL'){
             return long_month + ' ' + day + ', ' + year;
-        }else if(type == 'YYYY-MM-DD HH:mm:ss'){
+        }else if(type == 'YYYY-MM-DD HH:mm:ss' || type == 'YYYY-MM-DD hh:mm:ss'){
             return year + '-' + month + '-' + day + ' ' + date.getHours() + ':'+ date.getMinutes() + ':' + date.getSeconds();
+        }else if(type='DD/MM/YYYY hh:mm:ss'){
+			return day + '/' + month + '/' + year + ' ' + date.getHours() + ':'+ date.getMinutes() + ':' + date.getSeconds();
         }else{
             if(char != ''){
                 type_arr = type.split(char);
@@ -103,6 +106,9 @@ class native_date{
                 val = val.replace(',', '');
                 if(val == 'YYYY'){
                     formatted += year;
+                }else if(val == 'YY'){
+					year = year.toString();
+                    formatted += year.substring(2);
                 }else if(val == 'MM'){
                     formatted += month;
                 }else if(val == 'MMM'){
@@ -118,7 +124,7 @@ class native_date{
                 }else if(val == 'Do'){
                     formatted += day + this.nth(day);
                 }else if(val == 'HH:mm:ss'){
-                    formatted += date.getHours() + ':'+date.getMinutes()+':'+date.getSeconds();
+                    formatted += hours + ':'+date.getMinutes()+':'+date.getSeconds();
                 }else if(val == 'h:mm'){
                     let hour = (date.getHours() %12) + 1;
                     formatted += hour + ':'+date.getMinutes();
@@ -152,3 +158,4 @@ class native_date{
     }
 }
 module.exports = new native_date();
+
