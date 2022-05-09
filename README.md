@@ -1,29 +1,33 @@
-# native-date
-There are some common methods exists for date calculation. Methods are- <br>
-- **is_date(date)**<br>
-_Check the date is valid_ <br>
-**return boolean** <br>
-
-- **is_leap_year(date)**<br>
-_Check the year is leap year_ <br>
-**return boolean** <br>
-
-- **is_after(date1, date2)**<br>
-_Check the date2 is earlier_ <br>
-**return boolean** <br>
-
-- **is_before(date1, date2)**<br>
-_Check the date1 is before <br>
-**return boolean** <br>
-
-- **add(date, number)**<br>
-_Add [number] date to the date_ <br>
-**return date** <br>
-
-- **sub(date, number)**<br>
-_Substruct [number] date from the date_ <br>
-**return date** <br>
-
-- **format(date)**<br>
-_Format the date to YYYY-MM-DD_ <br>
-**return date** <br>
+# Native Date
+### Some common methods to calculate and formatting date.  
+> #### is_date(date)
+>> Check the date is valid  
+>>> _**return boolean**_  
+***
+> #### is_leap_year(date)
+>> _Check the year is leap year_  
+>>> **return boolean**  
+    
+> #### last_date(date, format)
+>> _Last date of the month_   
+>>> _**return date**_   
+*** 
+> #### is_leap_year(date)
+>> _Check the year is leap year_   
+>>> _**return boolean**_   
+*** 
+> #### add(date, number, category, type)
+>> _Add [number] of date or month depend on category to the date_    
+>>> _**return date**_
+***
+> #### sub(date, number)
+>> _Substruct [number] of date or month depend on category to the date_   
+>>> _**return date**_   
+***
+> #### diff(date1, date2)
+>> _Difference of between date1 and date2 in days   
+>>> _**return date**_   
+***
+> #### format(date)
+>> _Format the date to YYYY-MM-DD_    
+>>> _**return date**_   
