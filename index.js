@@ -92,8 +92,8 @@ class native_date{
             return long_month + ' ' + day + ', ' + year;
         }else if(type == 'YYYY-MM-DD HH:mm:ss' || type == 'YYYY-MM-DD hh:mm:ss'){
             return year + '-' + month + '-' + day + ' ' + date.getHours() + ':'+ date.getMinutes() + ':' + date.getSeconds();
-        }else if(type='DD/MM/YYYY hh:mm:ss'){
-			return day + '/' + month + '/' + year + ' ' + date.getHours() + ':'+ date.getMinutes() + ':' + date.getSeconds();
+        }else if(type == 'DD/MM/YYYY hh:mm:ss'){
+	    return day + '/' + month + '/' + year + ' ' + date.getHours() + ':'+ date.getMinutes() + ':' + date.getSeconds();
         }else{
             if(char != ''){
                 type_arr = type.split(char);
